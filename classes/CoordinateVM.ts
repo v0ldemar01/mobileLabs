@@ -55,7 +55,7 @@ interface CheckValidation {
 
 const validate: CheckValidation = (
   value: number,
-  { min, max }: ValidationValue,
+  {min, max}: ValidationValue,
 ) => (value >= min && value <= max ? true : false);
 
 const averageCalc = (a: number, b: number) => (a + b) / 2;
@@ -101,7 +101,7 @@ class CoordinateVM {
   _toStringElements = (value: number) => (value < 10 ? `0${value}` : value);
 
   toString = () => {
-    const { degree, minute, second, direction } = this;
+    const {degree, minute, second, direction} = this;
     const formatDegree = this._toStringElements(degree);
     const formatMinute = this._toStringElements(minute);
     const formatSecond = this._toStringElements(second);
@@ -109,7 +109,7 @@ class CoordinateVM {
   };
 
   toOtherString = () => {
-    const { degree, minute, second, direction } = this;
+    const {degree, minute, second, direction} = this;
     const sec = second / 3600;
     const min = minute / 60;
     const hexCoordinate = degree + min + sec;

@@ -1,4 +1,4 @@
-import { Home } from './Home';
-import { Other } from './Other';
+import {Home} from './Home';
+import {Draw} from './Draw';
 
-export { Home, Other };
+export {Home, Draw};
