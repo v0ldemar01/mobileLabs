@@ -216,11 +216,12 @@ export const Plot = ({min, max, width, height}: IPlotProps) => {
   const nodes = getNodes(myFunction, min, max);
 
   return (
-    <View style={{
-      height: 450,
-      width: 450,
-      marginTop: 100
-    }}>
+    <View
+      style={{
+        height: 400,
+        width: 400,
+        marginTop: 100,
+      }}>
       <LineChartLocal nodes={nodes} width={width} height={height} />
     </View>
   );

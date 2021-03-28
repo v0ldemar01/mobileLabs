@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
     maxHeight: 200,
     resizeMode: 'contain',
   },
+  padding: {
+    padding: 5,
+  },
   titleText: {
     fontSize: 20,
     textAlign: 'center',
@@ -34,7 +37,9 @@ interface Props {
 }
 
 export const Home = ({navigation}: Props) => {
-  const [orientation, setOrientation] = useState('portrate');
+  const [orientation, setOrientation] = useState<'portrate' | 'landscape'>(
+    'portrate',
+  );
   const onLayout = () => {
     const {width, height} = Dimensions.get('window');
     if (height > width) {
@@ -64,6 +69,12 @@ export const Home = ({navigation}: Props) => {
       <Button
         title="Go to Graw Page"
         onPress={() => navigation.navigate('Draw')}
+        color="#f194ff"
+      />
+      <View style={styles.padding} />
+      <Button
+        title="Go to Books Page"
+        onPress={() => navigation.navigate('Books')}
         color="#f194ff"
       />
     </View>

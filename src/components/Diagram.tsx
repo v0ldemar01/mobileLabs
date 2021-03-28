@@ -49,8 +49,8 @@ const Diagram = () => {
       startAngle={-Math.PI * 1.73}
       valueAccessor={({item}) => item.amount}
       style={{
-        height: 450,
-        width: 450,
+        height: 400,
+        width: 400,
         marginTop: 100
       }}
     />

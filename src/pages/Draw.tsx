@@ -6,14 +6,14 @@ import {
   NativeSegmentedControlIOSChangeEvent,
 } from 'react-native';
 import SegmentedControl from '@react-native-segmented-control/segmented-control';
-import {Plot} from './components/Plot';
-import Diagram from './components/Diagram';
+import {Plot} from '../components/Plot';
+import Diagram from '../components/Diagram';
 
 const styles = StyleSheet.create({
   control: {
     width: 300,
     maxWidth: '90%',
-    marginTop: 200,
+    marginTop: 100,
     height: 50,
   },
   container: {
@@ -45,15 +45,9 @@ const Draw = () => {
         onChange={onChange}
       />
       {
-        [
-          <Plot
-            max={3}
-            min={-3}
-            height={450}
-            width={450}
-          />,
-          <Diagram />,
-        ][selectedIndex]
+        [<Plot max={3} min={-3} height={400} width={400} />, <Diagram />][
+          selectedIndex
+        ]
       }
     </View>
   );
