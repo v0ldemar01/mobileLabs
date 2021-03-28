@@ -5,12 +5,13 @@ import {BooksImages} from '../../assets/images';
 
 const styles = StyleSheet.create({
   container: {
-    width: '90%',
+    width: '95%',
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    paddingRight: 30,
-    paddingVertical: 10,
+    paddingRight: 65,
+    paddingLeft: 15,
+    paddingVertical: 15,
     borderBottomWidth: 1,
     borderBottomColor: '#c0c',
   },
@@ -18,7 +19,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexShrink: 1,
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     marginLeft: 10,
   },
   title: {

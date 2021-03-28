@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {Text, View, Image, StyleSheet, Button, Dimensions} from 'react-native';
+import React from 'react';
+import {Text, View, Image, StyleSheet, Button} from 'react-native';
 import {
   NavigationParams,
   NavigationScreenProp,
@@ -7,27 +7,21 @@ import {
 } from 'react-navigation';
 
 const styles = StyleSheet.create({
-  ContainerPortrait: {
+  container: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  ContainerLandscape: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   imageContainer: {
-    maxHeight: 200,
+    maxHeight: 160,
     resizeMode: 'contain',
   },
   padding: {
     padding: 5,
   },
   titleText: {
-    fontSize: 20,
+    fontSize: 16,
     textAlign: 'center',
   },
 });
@@ -37,30 +31,14 @@ interface Props {
 }
 
 export const Home = ({navigation}: Props) => {
-  const [orientation, setOrientation] = useState<'portrate' | 'landscape'>(
-    'portrate',
-  );
-  const onLayout = () => {
-    const {width, height} = Dimensions.get('window');
-    if (height > width) {
-      setOrientation('portrate');
-    } else {
-      setOrientation('landscape');
-    }
-    console.log(width, height);
-  };
   return (
     <View
-      style={
-        orientation === 'portrate'
-          ? styles.ContainerPortrait
-          : styles.ContainerLandscape
-      }
-      onLayout={onLayout}>
+      style={styles.container}>
       <Image
         style={styles.imageContainer}
         source={require('../../assets/kpi.png')}
       />
+      <View style={styles.padding} />
       <Text style={styles.titleText}>
         Volodymyr Minchenko{'\n'}
         Group IP-83{'\n'}

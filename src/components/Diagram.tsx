@@ -8,7 +8,13 @@ interface IPieChart {
   arc: {padAngle: number};
 }
 
-const Diagram = () => {
+interface IDiagramProps {
+  width: number;
+  height: number;
+  marginTop: number;
+}
+
+const Diagram = ({width, height, marginTop}: IDiagramProps) => {
   const data: IPieChart[] = [
     {
       key: 1,
@@ -49,9 +55,9 @@ const Diagram = () => {
       startAngle={-Math.PI * 1.73}
       valueAccessor={({item}) => item.amount}
       style={{
-        height: 400,
-        width: 400,
-        marginTop: 100
+        height,
+        width,
+        marginTop
       }}
     />
   );
