@@ -209,18 +209,20 @@ interface IPlotProps {
   max: number;
   width: number;
   height: number;
+  marginTop: number;
 }
 
-export const Plot = ({min, max, width, height}: IPlotProps) => {
+export const Plot = ({min, max, width, height, marginTop}: IPlotProps) => {
   const myFunction = (x: number) => Math.pow(x, 3);
   const nodes = getNodes(myFunction, min, max);
 
   return (
-    <View style={{
-      height: 450,
-      width: 450,
-      marginTop: 100
-    }}>
+    <View
+      style={{
+        height,
+        width,
+        marginTop,
+      }}>
       <LineChartLocal nodes={nodes} width={width} height={height} />
     </View>
   );
