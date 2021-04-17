@@ -55,7 +55,7 @@ const Draw = () => {
   ) => {
     setSelectedIndex(event.nativeEvent.selectedSegmentIndex);
   };
-  const graphSize = orientation === 'portrate' ? 400 : 250;
+  const graphSize = orientation === 'portrate' ? 350 : 250;
   const marginTop = orientation === 'portrate' ? 100 : 25;
   return (
     <View
@@ -82,8 +82,8 @@ const Draw = () => {
       {
         [
           <Plot
-            max={3}
-            min={-3}
+            max={Math.PI * 2}
+            min={-Math.PI * 2}
             height={graphSize}
             width={graphSize}
             marginTop={marginTop}
