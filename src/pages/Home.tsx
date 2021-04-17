@@ -32,8 +32,7 @@ interface Props {
 
 export const Home = ({navigation}: Props) => {
   return (
-    <View
-      style={styles.container}>
+    <View style={styles.container}>
       <Image
         style={styles.imageContainer}
         source={require('../../assets/kpi.png')}
@@ -47,12 +46,6 @@ export const Home = ({navigation}: Props) => {
       <Button
         title="Go to Graw Page"
         onPress={() => navigation.navigate('Draw')}
-        color="#f194ff"
-      />
-      <View style={styles.padding} />
-      <Button
-        title="Go to Books Page"
-        onPress={() => navigation.navigate('Books')}
         color="#f194ff"
       />
     </View>
