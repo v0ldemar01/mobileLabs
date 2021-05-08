@@ -75,7 +75,7 @@ export const Books = ({navigation: {navigate}}: INavigationProps) => {
         name="Details"
         component={BookDetails}
         options={{
-          title: 'Profile',
+          title: 'List',
           cardStyleInterpolator:
             CardStyleInterpolators.forFadeFromBottomAndroid,
         }}
