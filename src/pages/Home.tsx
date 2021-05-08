@@ -1,10 +1,6 @@
 import React from 'react';
 import {Text, View, Image, StyleSheet, Button} from 'react-native';
-import {
-  NavigationParams,
-  NavigationScreenProp,
-  NavigationState,
-} from 'react-navigation';
+import {INavigationProps} from '../models/props/INavigationProps';
 
 const styles = StyleSheet.create({
   container: {
@@ -26,16 +22,12 @@ const styles = StyleSheet.create({
   },
 });
 
-interface Props {
-  navigation: NavigationScreenProp<NavigationState, NavigationParams>;
-}
-
-export const Home = ({navigation}: Props) => {
+export const Home = ({navigation}: INavigationProps) => {
   return (
     <View style={styles.container}>
       <Image
         style={styles.imageContainer}
-        source={require('../../assets/kpi.png')}
+        source={require('../../assets/appImages/kpi.png')}
       />
       <View style={styles.padding} />
       <Text style={styles.titleText}>
