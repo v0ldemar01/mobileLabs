@@ -213,7 +213,7 @@ interface IPlotProps {
 }
 
 export const Plot = ({min, max, width, height, marginTop}: IPlotProps) => {
-  const myFunction = (x: number) => Math.pow(x, 3);
+  const myFunction = (x: number) => Math.sin(x);
   const nodes = getNodes(myFunction, min, max);
 
   return (
