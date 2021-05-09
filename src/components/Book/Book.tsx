@@ -9,9 +9,8 @@ import {
 } from 'react-native';
 import {RectButton, Swipeable} from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {BooksImages} from '../../assets/images';
-import IBook from '../models/IBook';
-import {IBookProps} from '../models/props/IBook';
+import {IBook} from '../../models/IBook';
+import {IBookProps} from '../../models/props/IBook';
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
@@ -146,7 +145,7 @@ export const SwipeableBook: FunctionComponent<IBookProps> = ({
 
 const Book = ({title, subtitle, price, image}: IBook) => (
   <RectButton style={styles.rectButtonContainer}>
-    <Image style={styles.image} source={BooksImages[image]} />
+    <Image style={styles.image} source={{uri: image}} />
     <View style={styles.textContainer}>
       <Text numberOfLines={2} style={styles.title}>
         {title}

@@ -1,6 +1,6 @@
-import React, {FunctionComponent} from 'react';
+import React, {FunctionComponent, useState} from 'react';
 import {Dimensions, StyleSheet, View} from 'react-native';
-import {IPictureCompositionProps} from '../models/props/IPictureComposition';
+import {IPictureCompositionProps} from '../../models/props/IPictureComposition';
 import {Picture} from './Picture';
 import uuid from 'react-native-uuid';
 
@@ -24,7 +24,18 @@ const maxImageSize = 3;
 export const PictureComposition: FunctionComponent<IPictureCompositionProps> = ({
   pictures,
 }: IPictureCompositionProps) => {
-  const {width} = Dimensions.get('window');
+  const [width, setWidth] = useState<number>(0);
+  const [, setOrientation] = useState<'portrate' | 'landscape'>('portrate');
+  const onLayout = () => {
+    const {width: wth, height} = Dimensions.get('window');
+    if (height > wth) {
+      setOrientation('portrate');
+    } else {
+      setOrientation('landscape');
+    }
+    setWidth(wth);
+  };
+
   const minWidth = width / (2 * minImageSize + maxImageSize);
   const imagePosition = {
     left: [],
@@ -56,7 +67,7 @@ export const PictureComposition: FunctionComponent<IPictureCompositionProps> = (
     );
   });
   return (
-    <View style={styles.container}>
+    <View style={styles.container} onLayout={onLayout}>
       {Object.values(imagePosition).map((picturePosition) => (
         <View key={uuid.v4() as string} style={styles.column}>
           {picturePosition.map((e) => e)}

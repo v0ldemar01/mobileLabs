@@ -3,11 +3,16 @@ import {Platform, Alert, FlatList} from 'react-native';
 import {Header} from 'react-native-elements';
 import * as ImagePicker from 'expo-image-picker';
 import {ImageInfo} from 'expo-image-picker/build/ImagePicker.types';
-import {PictureComposition} from '../components/PictureComposition';
+import {PictureComposition} from '../components/Picture/PictureComposition';
 import uuid from 'react-native-uuid';
+import {getPictures} from '../api/pictures';
 
 export const Pictures: FunctionComponent = () => {
   const [pictures, setPictures] = useState<string[]>([]);
+
+  useEffect(() => {
+    getPictures().then((images) => setPictures(images));
+  }, []);
 
   useEffect(() => {
     (async () => {
