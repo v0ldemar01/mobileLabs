@@ -1,7 +1,7 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Home, Draw, Books} from './src/pages';
+import {Home, Draw, Books, Pictures} from './src/pages';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const Tab = createBottomTabNavigator();
@@ -23,6 +23,9 @@ export default function App() {
               case 'Books':
                 iconName = 'book-open-variant';
                 break;
+              case 'Pictures':
+                iconName = 'image-multiple-outline';
+                break;
             }
             return <Icon name={iconName} size={size} color={color} />;
           },
@@ -40,6 +43,7 @@ export default function App() {
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Draw" component={Draw} />
         <Tab.Screen name="Books" component={Books} />
+        <Tab.Screen name="Pictures" component={Pictures} />
       </Tab.Navigator>
     </NavigationContainer>
   );
