@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, FunctionComponent} from 'react';
 import {View, StyleSheet, Button} from 'react-native';
 import {Input} from 'react-native-elements';
-import {INavigationProps} from '../models/props/INavigationProps';
-import {IAddBookProps} from '../models/props/IAddBook';
+import {INavigationProps} from '../../models/props/INavigationProps';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,14 +30,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export const AddBook = ({
+export const AddBook: FunctionComponent<INavigationProps> = ({
   navigation,
-  addBook,
-}: INavigationProps & IAddBookProps) => {
+}: INavigationProps) => {
   const [title, setTitle] = useState('');
   const [subtitle, setSubtitle] = useState('');
   const [price, setPrice] = useState('');
   const [error, setError] = useState('');
+  const addBook = () => console.log('new book');
   return (
     <View style={styles.container}>
       <Input label="Title" onChangeText={setTitle} />
@@ -57,7 +56,7 @@ export const AddBook = ({
           if (isNaN(Number(price))) {
             return setError('Please enter a number');
           }
-          addBook({title, subtitle, price});
+          addBook();
           navigation.goBack();
         }}
         disabled={!(title && subtitle && price)}

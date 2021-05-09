@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Image,
   SafeAreaView,
@@ -7,31 +7,35 @@ import {
   Text,
   View,
 } from 'react-native';
-import {BooksImages} from '../../assets/images';
-import {bookDetails} from '../../assets/books';
+import {getBookByIsbn13} from '../../api/books';
+import {IAboutBook} from '../../models/IBook';
 
 export const BookDetails = ({route}: any) => {
   const {isbn13} = route.params;
-  const currentBook = bookDetails[isbn13] ?? {};
+  const [currentBook, setCurrentBook] = useState<IAboutBook>({} as IAboutBook);
+  useEffect(() => {
+    getBookByIsbn13(isbn13).then((book) => setCurrentBook(book));
+  }, [isbn13]);
   const {
-    title,
-    subtitle,
     authors,
-    publisher,
-    pages,
-    year,
-    rating,
     desc,
-    price,
     image,
+    language,
+    pages,
+    price,
+    publisher,
+    rating,
+    subtitle,
+    title,
+    url,
+    year,
   } = currentBook;
-  const img = BooksImages[image];
   return (
     <SafeAreaView>
       <ScrollView style={image ? styles.allContainer : styles.textContainer}>
         {image ? (
           <View style={styles.container}>
-            <Image style={styles.image} source={img} />
+            <Image style={styles.image} source={{uri: image}} />
           </View>
         ) : null}
         <View style={styles.textGroup}>
@@ -68,8 +72,16 @@ export const BookDetails = ({route}: any) => {
             {` ${rating ?? ''}`}
           </Text>
           <Text style={styles.textElement}>
+            <Text style={styles.textCaption}>Language:</Text>
+            {` ${language ?? ''}`}
+          </Text>
+          <Text style={styles.textElement}>
             <Text style={styles.textCaption}>Price:</Text>
             {` ${price ?? ''}`}
+          </Text>
+          <Text style={styles.textElement}>
+            <Text style={styles.textCaption}>Url:</Text>
+            {` ${url ?? ''}`}
           </Text>
         </View>
       </ScrollView>
