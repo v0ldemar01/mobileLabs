@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import {StyleSheet, ActivityIndicator, View} from 'react-native';
 import {Image} from 'react-native-elements';
-import {IPictureProps} from '../models/props/IPicture';
+import {IPictureProps} from '../../models/props/IPicture';
 
 export const Picture: FunctionComponent<IPictureProps> = ({
   image,
