@@ -11,6 +11,7 @@ import {SearchBar} from 'react-native-elements';
 import {IBookListProps} from '../../models/props/IBookList';
 import {IBook} from '../../models/IBook';
 import {getBooksByFilter} from '../../api/books';
+import bookRepository from '../../data/repositories/BookRepository';
 import {SwipeableBook} from './Book';
 
 export const BookList: FunctionComponent<IBookListProps> = ({
@@ -18,6 +19,7 @@ export const BookList: FunctionComponent<IBookListProps> = ({
 }: IBookListProps) => {
   const [search, setSearch] = useState<string>('');
   const [books, setBooks] = useState<IBook[]>([]);
+  const [error, setError] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
@@ -25,16 +27,34 @@ export const BookList: FunctionComponent<IBookListProps> = ({
       return setBooks([]);
     }
     setLoading(true);
-    getBooksByFilter(search.toLowerCase()).then((resultBooks: IBook[]) => {
-      setBooks(resultBooks);
-      setLoading(false);
-    });
+    getBooksByFilter(search.toLowerCase())
+      .then((resultBooks: IBook[]) => {
+        setBooks(resultBooks);
+        setLoading(false);
+      })
+      .catch(() => {
+        setError('Can`t get data from network(');
+        bookRepository
+          .getBooksBySearchString(search.toLowerCase())
+          .then((resultBooks: IBook[]) => {
+            setError('');
+            setBooks(resultBooks);
+          })
+          .catch(() => {
+            setBooks([]);
+            setError('Can`t get data from database(');
+          })
+          .finally(() => {
+            setLoading(false);
+          });
+      });
   }, [search]);
 
   const deleteBook = (isbn13: string) => {
     const newBooks = books.filter((book: IBook) => book.isbn13 !== isbn13);
     setBooks(newBooks);
   };
+
   return (
     <>
       <SearchBar
@@ -47,6 +67,8 @@ export const BookList: FunctionComponent<IBookListProps> = ({
       <SafeAreaView style={styles.container}>
         {loading ? (
           <ActivityIndicator size="large" color="#00ff00" />
+        ) : error ? (
+          <Text style={styles.noText}>{error}</Text>
         ) : books.length ? (
           <FlatList
             data={books}
@@ -61,7 +83,7 @@ export const BookList: FunctionComponent<IBookListProps> = ({
             keyExtractor={(_, i) => JSON.stringify(i)}
           />
         ) : (
-          <Text style={styles.noBookText}>Books not found...</Text>
+          <Text style={styles.noText}>Books not found...</Text>
         )}
       </SafeAreaView>
     </>
@@ -80,7 +102,7 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: '#444',
   },
-  noBookText: {
+  noText: {
     fontSize: 20,
     color: 'red',
   },

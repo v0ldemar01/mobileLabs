@@ -3,6 +3,7 @@ import {Dimensions, StyleSheet, View} from 'react-native';
 import {IPictureCompositionProps} from '../../models/props/IPictureComposition';
 import {Picture} from './Picture';
 import uuid from 'react-native-uuid';
+import {IPicture} from '../../models/IPicture';
 
 interface IImagePosition {
   [propName: string]: any[];
@@ -42,7 +43,7 @@ export const PictureComposition: FunctionComponent<IPictureCompositionProps> = (
     center: [],
     right: [],
   } as IImagePosition;
-  pictures.forEach((picture: string, index: number) => {
+  pictures.forEach((picture: IPicture, index: number) => {
     const positionIndex = Object.entries(imagePositionIndex).find(
       ([, value]) => {
         if (value.includes(index + 1)) {

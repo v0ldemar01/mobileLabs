@@ -1,5 +1,6 @@
+import {IPicture} from '../IPicture';
 export interface IPictureProps {
-  image: string;
+  image: IPicture;
   width: number;
   height: number;
 }

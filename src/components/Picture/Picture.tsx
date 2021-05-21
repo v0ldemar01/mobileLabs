@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from 'react';
 import {StyleSheet, ActivityIndicator, View} from 'react-native';
 import {Image} from 'react-native-elements';
-import {IPictureProps} from '../models/props/IPicture';
+import {IPictureProps} from '../../models/props/IPicture';
 
 export const Picture: FunctionComponent<IPictureProps> = ({
   image,
@@ -9,7 +9,7 @@ export const Picture: FunctionComponent<IPictureProps> = ({
   height,
 }: IPictureProps) => (
   <Image
-    source={{uri: image}}
+    source={{uri: image.largeImageURL}}
     style={{width, height, ...styles.image}}
     PlaceholderContent={
       <View style={styles.container}>

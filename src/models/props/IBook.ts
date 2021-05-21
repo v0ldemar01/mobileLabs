@@ -1,5 +1,5 @@
 import {GestureResponderEvent} from 'react-native';
-import IBook from '../IBook';
+import {IBook} from '../IBook';
 
 export interface IBookProps {
   item: IBook;

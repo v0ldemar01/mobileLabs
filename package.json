@@ -5,7 +5,10 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "add-migration": "node_modules\\.bin\\ts-node node_modules\\typeorm/cli.js migration:generate -n",
+    "migrate": "node_modules\\.bin\\ts-node node_modules\\typeorm\\cli.js migration:run",
+    "migration-revert": "node_modules\\.bin\\ts-node node_modules\\typeorm\\cli.js migration:revert"
   },
   "dependencies": {
     "@react-native-segmented-control/segmented-control": "^2.3.0",
@@ -13,8 +16,10 @@
     "@react-navigation/native": "^5.9.2",
     "@react-navigation/stack": "^5.14.3",
     "axios": "^0.21.1",
+    "dotenv": "^9.0.2",
     "expo": "~40.0.0",
     "expo-image-picker": "^10.1.4",
+    "expo-sqlite": "^7.0.0",
     "expo-status-bar": "~1.0.3",
     "react": "16.13.1",
     "react-dom": "16.13.1",
@@ -22,12 +27,14 @@
     "react-native-elements": "^3.3.2",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-screens": "^3.1.1",
+    "react-native-sqlite-storage": "^5.0.0",
     "react-native-svg": "^12.1.0",
     "react-native-svg-charts": "^5.4.0",
     "react-native-uuid": "^2.0.1",
     "react-native-vector-icons": "^8.0.0",
     "react-native-web": "~0.13.12",
     "react-navigation": "^4.4.3",
+    "reflect-metadata": "^0.1.13",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -38,8 +45,10 @@
     "@types/react-native": "~0.63.2",
     "@types/react-native-svg-charts": "^5.0.7",
     "@types/react-native-vector-icons": "^6.4.6",
+    "babel-plugin-transform-typescript-metadata": "^0.3.2",
     "eslint": "^7.19.0",
     "prettier": "^2.2.1",
+    "ts-node": "^9.1.1",
     "typescript": "~4.0.0"
   },
   "private": true

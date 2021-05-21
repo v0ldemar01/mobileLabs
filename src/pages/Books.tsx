@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import {BookList} from '../components/Book/BookList';
 import {
   CardStyleInterpolators,
@@ -14,7 +14,9 @@ import {IBook} from '../models/IBook';
 
 const Stack = createStackNavigator();
 
-export const Books = ({navigation: {navigate}}: INavigationProps) => (
+export const Books: FunctionComponent<INavigationProps> = ({
+  navigation: {navigate},
+}: INavigationProps) => (
   <Stack.Navigator>
     <Stack.Screen
       name="Books list"
@@ -38,10 +40,7 @@ export const Books = ({navigation: {navigate}}: INavigationProps) => (
       {(props) => (
         <BookList
           {...props}
-          onPressBook={(book: IBook) => {
-            console.log('book', book);
-            return navigate('Details', {...book});
-          }}
+          onPressBook={(book: IBook) => navigate('Details', {...book})}
         />
       )}
     </Stack.Screen>
