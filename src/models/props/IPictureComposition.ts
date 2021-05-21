@@ -1,3 +1,5 @@
+import {IPicture} from '../IPicture';
+
 export interface IPictureCompositionProps {
-  pictures: string[];
+  pictures: IPicture[];
 }

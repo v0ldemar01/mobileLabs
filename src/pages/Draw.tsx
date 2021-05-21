@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {FunctionComponent, useState} from 'react';
 import {
   View,
   StyleSheet,
@@ -10,34 +10,7 @@ import SegmentedControl from '@react-native-segmented-control/segmented-control'
 import {Plot} from '../components/Plot';
 import Diagram from '../components/Diagram';
 
-const styles = StyleSheet.create({
-  controlPortrait: {
-    width: 300,
-    maxWidth: '90%',
-    marginTop: 100,
-    height: 50,
-  },
-  controlLandscape: {
-    width: 300,
-    maxWidth: '90%',
-    marginTop: 30,
-    height: 30,
-  },
-  containerPortrait: {
-    flex: 1,
-    maxHeight: '95%',
-    alignItems: 'center',
-    padding: 10,
-  },
-  containerLandscape: {
-    flex: 1,
-    maxHeight: '95%',
-    alignItems: 'center',
-    padding: 10,
-  },
-});
-
-const Draw = () => {
+const Draw: FunctionComponent = () => {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [orientation, setOrientation] = useState<'portrate' | 'landscape'>(
     'portrate',
@@ -100,3 +73,30 @@ const Draw = () => {
 };
 
 export {Draw};
+
+const styles = StyleSheet.create({
+  controlPortrait: {
+    width: 300,
+    maxWidth: '90%',
+    marginTop: 100,
+    height: 50,
+  },
+  controlLandscape: {
+    width: 300,
+    maxWidth: '90%',
+    marginTop: 30,
+    height: 30,
+  },
+  containerPortrait: {
+    flex: 1,
+    maxHeight: '95%',
+    alignItems: 'center',
+    padding: 10,
+  },
+  containerLandscape: {
+    flex: 1,
+    maxHeight: '95%',
+    alignItems: 'center',
+    padding: 10,
+  },
+});

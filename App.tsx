@@ -1,20 +1,34 @@
-import 'reflect-metadata';
 import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Home, Draw, Books, Pictures} from './src/pages';
-import {createConnection} from 'typeorm';
-import {env} from './src/env';
+// import db from './src/data/db/connection';
+
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import * as SQLite from 'expo-sqlite';
+const db = SQLite.openDatabase('books_pictures.db');
+import initDb from './src/data/migrations/initDb';
 
 const Tab = createBottomTabNavigator();
 
+const checkWorkDb = () =>
+  new Promise((resolve) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        'SELECT name FROM sqlite_master WHERE type="table"',
+        [],
+        (...res) => {
+          resolve(res);
+        },
+      );
+    });
+  });
+
 export default function App() {
   useEffect(() => {
-    createConnection()
-      .then(() => console.log('Connection has been established successfully.'))
-      .catch((err) => console.error('Unable to connect to the database:', err));
-  });
+    initDb(db);
+    checkWorkDb().then((res) => console.log(res));
+  }, []);
 
   return (
     <NavigationContainer>

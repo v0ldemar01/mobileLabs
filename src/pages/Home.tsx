@@ -1,28 +1,10 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import {Text, View, Image, StyleSheet, Button} from 'react-native';
 import {INavigationProps} from '../models/props/INavigationProps';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  imageContainer: {
-    maxHeight: 160,
-    resizeMode: 'contain',
-  },
-  padding: {
-    padding: 5,
-  },
-  titleText: {
-    fontSize: 16,
-    textAlign: 'center',
-  },
-});
-
-export const Home = ({navigation}: INavigationProps) => {
+export const Home: FunctionComponent<INavigationProps> = ({
+  navigation,
+}: INavigationProps) => {
   return (
     <View style={styles.container}>
       <Image
@@ -43,3 +25,23 @@ export const Home = ({navigation}: INavigationProps) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  imageContainer: {
+    maxHeight: 160,
+    resizeMode: 'contain',
+  },
+  padding: {
+    padding: 5,
+  },
+  titleText: {
+    fontSize: 16,
+    textAlign: 'center',
+  },
+});

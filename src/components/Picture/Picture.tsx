@@ -9,7 +9,7 @@ export const Picture: FunctionComponent<IPictureProps> = ({
   height,
 }: IPictureProps) => (
   <Image
-    source={{uri: image}}
+    source={{uri: image.largeImageURL}}
     style={{width, height, ...styles.image}}
     PlaceholderContent={
       <View style={styles.container}>
